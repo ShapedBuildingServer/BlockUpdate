@@ -25,6 +25,11 @@ class Main extends PluginBase implements Listener{
         $this->blockLeaveDecay = $this->getConfig()->get("Block-Leave-Decay");
 	$this->getServer()->getPluginManager()->registerEvents(new BlockUpdateListener(), $this);
         $this->getLogger()->info("Enabled!");
+	    foreach ($this->getServer()->getLevels() as $level){
+             foreach($level->getRandomTickedBlocks() as $id => $block){
+             $level->removeRandomTickedBlock($id);
+         }
+      }
    }
 	
    public static function getInstance(){
